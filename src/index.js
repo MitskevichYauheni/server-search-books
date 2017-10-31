@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 
 
 
-app.get('/allbooks', function(req, res){
+app.post('/all-books', function(req, res){
    Book.find({}, function(err, books) {
      if(err){
        console.log(err);
