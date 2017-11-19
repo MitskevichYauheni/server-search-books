@@ -17,13 +17,15 @@ router.route('/all-books')
 
 router.route('/search-books')
   .post((req, res) => {
-    var re = new RegExp(req.body.message);
-    ///re/i
-    Book.find({name: re}, (err, books) => {
+    const message = new RegExp(req.body.message, 'i')
+
+    Book.find({ $or: [
+      {name: message},
+      {author: message}
+    ]}, (err, books) => {
       if(err){
         console.log(err);
       } else {
-        // console.log(books);
         res.status(200).json({allBooks: books});
       }
     })
