@@ -14,5 +14,5 @@ appReady.then(connected => {
 const startServer = () => {
   server.listen(config.port, () => {
     console.log('Server is up ' + config.port);
-  })
+  });
 }

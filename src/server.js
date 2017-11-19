@@ -1,9 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import config from './config';
-import router from './api/v1.js';
+import router from './router';
 
 const app = express();
+const http = require('http').Server(app);
+
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
@@ -14,6 +16,6 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use('/', router);
+app.use('/api/v1', router);
 
 export default app;
