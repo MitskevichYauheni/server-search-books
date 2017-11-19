@@ -19,9 +19,16 @@ app.use((req, res, next) => {
 app.use('/api/v1', router);
 
 app.use((err, req, res, next) => {
-  console.log(err);
-  // res.status(500).send('Something broke!');
-});
+  console.log("errorHandler");
+  if (err) {
+    //const statusCode = err.statusCode;
+    const data = err;
 
+    //return res.status(statusCode).json(data);
+    return res.status(500).json(data);
+  }
+
+  return res.json(err);
+});
 
 export default app;
