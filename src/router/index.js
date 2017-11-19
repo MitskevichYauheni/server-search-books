@@ -17,11 +17,14 @@ router.route('/all-books')
 
 router.route('/search-books')
   .post((req, res) => {
-    const message = new RegExp(req.body.message, 'i')
+    const message = new RegExp(req.body.message, 'i');
+    const years = req.body.years;
+
+    (years.length === 0) && years.push({year: /(?:)/})
 
     Book.find({ $or: [
-      {name: message},
-      {author: message}
+      {name: message, $and: [{$or: years}]},
+      {author: message, $and: [{$or: years}]},
     ]}, (err, books) => {
       if(err){
         console.log(err);

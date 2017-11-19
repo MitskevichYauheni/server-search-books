@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const bookSchema = mongoose.Schema({
   name: String,
   author: String,
-  year: Number,
+  year: String,
   description: String
 })
 
